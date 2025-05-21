@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4) Rendering tweaks
     showBackground: true,   // whether to draw your backgroundColor
     wireframe: false,       // draws just edges of the mesh
-    shininess:  50.00       // how “glossy” the faces appear
+    shininess:  0.00       // how “glossy” the faces appear
   });
 
   const fadeEls = document.querySelectorAll(".fade-up");
