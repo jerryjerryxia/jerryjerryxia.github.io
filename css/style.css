@@ -196,6 +196,7 @@ body {
   overflow: hidden;
   text-align: center;
   transition: transform .2s;
+  will-change: transform, opacity;
 }
 .card:hover { transform: translateY(-5px); }
 .card img {
