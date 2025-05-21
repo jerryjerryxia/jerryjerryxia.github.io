@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Title | JerryXia Portfolio</title>
+  <link rel="preload" href="/fonts/Orbitron-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Orbitron-Bold.woff2"    as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ShareTechMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Project Detail Layout */
+    .project-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      /* vertically center both columns */
+      align-items: center;
+      padding: 4rem 2rem;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .project-detail .image {
+      width: 100%;
+      border-radius: .5rem;
+      object-fit: cover;
+    }
+    .project-detail .content {
+      display: flex;
+      flex-direction: column;
+      /* align text and button to the left */
+      align-items: flex-start;
+      text-align: left;
+    }
+    .project-detail .content h1 {
+      font-family: var(--font-main);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .project-detail .content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .project-detail .contributors h2 {
+      font-family: var(--font-main);
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+      color: var(--accent);
+    }
+    .project-detail .contributors ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    .project-detail .contributors li {
+      margin-bottom: .5rem;
+      font-family: var(--font-mono);
+    }
+    .btn-download {
+      /* align button to the left edge of content */
+      margin: 0;
+      padding: .75rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: .3rem;
+      font-family: var(--font-main);
+      transition: background .2s;
+    }
+    .btn-download:hover {
+      background: #00c4d6;
+    }
+    @media (max-width: 768px) {
+      .project-detail {
+        grid-template-columns: 1fr;
+      }
+      .btn-download {
+        align-self: center;
+        margin-left: 0;
+      }
+      .project-detail .content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar include -->
+  <header class="navbar">
+    <a href="index.html" class="logo">Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="mobile-menu">☰</div>
+  </header>
+
+  <!-- Project Detail Section -->
+  <section class="project-detail">
+    <!-- Left: Large Project Image -->
+    <img src="assets/images/SQL1-1.jpg" alt="SQL Project" class="image" />
+
+    <!-- Right: Text Content -->
+    <div class="content">
+      <h1>League of Legends Meta Analysis</h1>
+      <p>
+        As an avid League player, meta and balancing analysis has always interested me. This is exactly
+        why I jumped at such a task the moment I became proficient with SQL and R.  
+      </p>
+      <p>
+        Using MySQL, I constructed a database to host historic League data found on Kaggle. The dataset
+        encompassed both detailed match history breakdowns and in-game balancing data such as champion 
+        stats, item stats,and so on.  
+      </p>
+      <p>
+        I was responsible for delivery this entire project end-to-end: finding a dataset, defining the data 
+        schema, populating the database, running the analysis, all the way until presenting the results. 
+      </p>
+      <p>
+        Some results were very surprising - for example, the champion with the highest overall stats at
+        level 18 is not a tank, nor a bruiser, but a melee-mage!
+      </p>
+      <p>
+        Want to find out more? Feel free to check out the entire project on GitHub. 
+      </p>
+
+      <div class="contributors">
+        <h2>Contributors</h2>
+        <ul>
+          <li>Jerry Xia - SQL Engineer, Business Analyst</li>
+        </ul>
+      </div>
+
+      <a href="https://github.com/jerryjerryxia/LOL_Meta_Analysis_S13" class="btn-download" target="_blank" rel="noopener">
+        Download Project
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer include -->
+</body>
+</html>

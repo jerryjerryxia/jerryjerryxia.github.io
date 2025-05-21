@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Title | JerryXia Portfolio</title>
+  <link rel="preload" href="/fonts/Orbitron-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Orbitron-Bold.woff2"    as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ShareTechMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Project Detail Layout */
+    .project-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      /* vertically center both columns */
+      align-items: center;
+      padding: 4rem 2rem;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .project-detail .image {
+      width: 100%;
+      border-radius: .5rem;
+      object-fit: cover;
+    }
+    .project-detail .content {
+      display: flex;
+      flex-direction: column;
+      /* align text and button to the left */
+      align-items: flex-start;
+      text-align: left;
+    }
+    .project-detail .content h1 {
+      font-family: var(--font-main);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .project-detail .content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .project-detail .contributors h2 {
+      font-family: var(--font-main);
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+      color: var(--accent);
+    }
+    .project-detail .contributors ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    .project-detail .contributors li {
+      margin-bottom: .5rem;
+      font-family: var(--font-mono);
+    }
+    .btn-download {
+      /* align button to the left edge of content */
+      margin: 0;
+      padding: .75rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: .3rem;
+      font-family: var(--font-main);
+      transition: background .2s;
+    }
+    .btn-download:hover {
+      background: #00c4d6;
+    }
+    @media (max-width: 768px) {
+      .project-detail {
+        grid-template-columns: 1fr;
+      }
+      .btn-download {
+        align-self: center;
+        margin-left: 0;
+      }
+      .project-detail .content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar include -->
+  <header class="navbar">
+    <a href="index.html" class="logo">Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="mobile-menu">☰</div>
+  </header>
+
+  <!-- Project Detail Section -->
+  <section class="project-detail">
+    <!-- Left: Large Project Image -->
+    <img src="assets/images/ML1-2.jpg" alt="ML Project" class="image" />
+
+    <!-- Right: Text Content -->
+    <div class="content">
+      <h1>Early Alzheimer's Risk Prediction</h1>
+      <p>
+        As one of the most prevalent progressive neural degenerative disease, Alzheimer's is one of the 
+        top factors that affects the quality of life of the elderly population.  
+      </p>
+      <p>
+        One of the key methods to combat Alzheimer's is an early discovery, but that usually entails a 
+        costly and lengthy process. To help address that problem, my team and I designed a decision-tree-based
+        machine learning algorithm to help clinicians identify people with high Alzheimer's risks. The
+        evaluation can be done with cheap and accessible data, which highlights the value of the solutioh. 
+      </p>
+      <p>
+        My main role in this project is to explore the boosting algorithm family. A fine-tuned gradient boosting
+        model that I built eventually was adopted as the champion model for this project. 
+      </p>
+      <p>
+        Feel free to check out the entire project on GitHub. 
+      </p>
+
+      <div class="contributors">
+        <h2>Contributors</h2>
+        <ul>
+          <li>Anakin Liu - ML Engineer</li>
+          <li>Ruiyuan Yang - ML Engineer</li>
+          <li>Jerry Xia - ML Engineer</li>
+        </ul>
+      </div>
+
+      <a href="https://github.com/jerryjerryxia/ML-Based-Early-Alzheimers-Risk-Prediction" class="btn-download" target="_blank" rel="noopener">
+        Download Project
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer include -->
+</body>
+</html>

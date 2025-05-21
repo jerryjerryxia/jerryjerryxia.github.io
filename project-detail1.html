@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Title | JerryXia Portfolio</title>
+  <link rel="preload" href="/fonts/Orbitron-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Orbitron-Bold.woff2"    as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ShareTechMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Project Detail Layout */
+    .project-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      /* vertically center both columns */
+      align-items: center;
+      padding: 4rem 2rem;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .project-detail .image {
+      width: 100%;
+      border-radius: .5rem;
+      object-fit: cover;
+    }
+    .project-detail .content {
+      display: flex;
+      flex-direction: column;
+      /* align text and button to the left */
+      align-items: flex-start;
+      text-align: left;
+    }
+    .project-detail .content h1 {
+      font-family: var(--font-main);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+    .project-detail .content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .project-detail .contributors h2 {
+      font-family: var(--font-main);
+      font-size: 1.5rem;
+      margin-bottom: .75rem;
+      color: var(--accent);
+    }
+    .project-detail .contributors ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    .project-detail .contributors li {
+      margin-bottom: .5rem;
+      font-family: var(--font-mono);
+    }
+    .btn-download {
+      /* align button to the left edge of content */
+      margin: 0;
+      padding: .75rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: .3rem;
+      font-family: var(--font-main);
+      transition: background .2s;
+    }
+    .btn-download:hover {
+      background: #00c4d6;
+    }
+    @media (max-width: 768px) {
+      .project-detail {
+        grid-template-columns: 1fr;
+      }
+      .btn-download {
+        align-self: center;
+        margin-left: 0;
+      }
+      .project-detail .content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar include -->
+  <header class="navbar">
+    <a href="index.html" class="logo">Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="mobile-menu">☰</div>
+  </header>
+
+  <!-- Project Detail Section -->
+  <section class="project-detail">
+    <!-- Left: Large Project Image -->
+    <img src="assets/images/AOL3-1.jpg" alt="Project Title Image" class="image" />
+
+    <!-- Right: Text Content -->
+    <div class="content">
+      <h1>The Adolescence of a Lunatic</h1>
+      <p>
+        They say youth is a state of mind. But modern psychology says that the state of the mind 
+        is heavily dictated by our body, our brain, and all those glorious chemicals they produce. 
+        So if we keep the doses high and steady, will this dream called "Adolescence" last forever? 
+        Or will we go mad while sliding down the rabbit hole? 
+      </p>
+      <p>
+        In this visual novel project, I worked with the amazing artist Sihan to craft 
+        an interactive reading experience that explores the nihilism hurdle and ways overcome it. 
+      </p>
+      <p>
+        My main roles: in short, everything except for visual art creation. I designed the storyline; 
+        I conceptualized the character designs; I wrote the stories; I programmed the playable software.
+      </p>
+      <p>
+        The project is unfortunately on hault for the time being, as I am heads-down driving the other
+        game project (which you should check out!). But I am 100% certain that I will come back to this
+        eventually. For now, feel free to check out a Chapter1 demo from the download link below~
+      </p>
+
+      <div class="contributors">
+        <h2>Contributors</h2>
+        <ul>
+          <li>Sihan Zhao - Artist</li>
+          <li>Jerry Xia - Narrative Designer, Developer</li>
+        </ul>
+      </div>
+
+      <a href="https://drive.google.com/drive/folders/1tXTr6lAQmfIj9FuFNzx0EUJsI9nXuCLS?dmr=1&ec=wgc-drive-hero-goto" class="btn-download" target="_blank" rel="noopener">
+        Download Project
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer include -->
+</body>
+</html>
