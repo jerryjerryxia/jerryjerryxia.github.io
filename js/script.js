@@ -46,5 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   fadeEls.forEach((el) => fadeObserver.observe(el));
 
+  // Handle credit links inside card links
+  const creditLinks = document.querySelectorAll('.credit-link');
+  creditLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = link.getAttribute('data-href');
+      if (href) {
+        window.open(href, '_blank', 'noopener');
+      }
+    });
+  });
+
 });
 
