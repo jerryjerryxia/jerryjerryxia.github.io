@@ -354,13 +354,21 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 }
 .feature {
   flex: 0 1 calc(33.333% - 0.8rem);
-  background: linear-gradient(180deg, var(--ink-2), var(--ink-1));
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20, 40, 62, 0.5), rgba(11, 22, 34, 0.56));
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   padding: 2rem 1.7rem;
-  transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 12px 32px -20px rgba(0, 0, 0, 0.75);
+  transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s, background 0.3s;
 }
-.feature:hover { transform: translateY(-5px); border-color: var(--line-strong); box-shadow: var(--shadow-md); }
+.feature:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(180deg, rgba(24, 46, 70, 0.56), rgba(13, 26, 42, 0.62));
+}
 .feature__icon {
   display: inline-grid; place-items: center;
   width: 52px; height: 52px; border-radius: 13px;
