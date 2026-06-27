@@ -278,59 +278,15 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .scrollcue span { animation: none; } }
 
 /* =========================================================
-   LOGLINE
-   ========================================================= */
-.logline {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--ink), var(--ink-1));
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(4rem, 11vw, 8rem) 0;
-  text-align: center;
-}
-.logline__bg {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%; object-fit: cover;
-  opacity: 0.8;
-}
-.logline__scrim {
-  position: absolute; inset: 0; z-index: 1;
-  background:
-    radial-gradient(72% 72% at 50% 50%, rgba(10, 19, 30, 0.5), rgba(10, 19, 30, 0.14) 100%),
-    linear-gradient(180deg, var(--ink), transparent 16%, transparent 84%, var(--ink-1));
-}
-.logline__group {
-  position: relative; z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.2rem, 3.5vw, 2.4rem);
-}
-.logline__text {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(1.6rem, 4.6vw, 3.1rem);
-  line-height: 1.28;
-  letter-spacing: -0.01em;
-  max-width: 20ch;
-  margin: 0 auto;
-  padding-inline: clamp(20px, 5vw, 48px);
-  text-wrap: balance;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
-}
-.logline__text em { color: var(--coral); font-style: italic; }
-
-/* =========================================================
    STORY / PREMISE (video bg)
    ========================================================= */
 .story {
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
   padding: clamp(5rem, 13vw, 9rem) 0;
   background: var(--ink-1);
 }
@@ -342,8 +298,8 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .story__scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(78% 78% at 50% 50%, rgba(10, 19, 30, 0.6), rgba(10, 19, 30, 0.18) 100%),
-    linear-gradient(180deg, var(--ink-1), transparent 14%, transparent 86%, var(--ink-1));
+    radial-gradient(80% 80% at 50% 50%, rgba(10, 19, 30, 0.5), rgba(10, 19, 30, 0.12) 100%),
+    linear-gradient(180deg, var(--ink), transparent 16%, transparent 84%, var(--ink-1));
 }
 .story__content { position: relative; z-index: 2; max-width: 760px; text-align: center; }
 .story__quote {
