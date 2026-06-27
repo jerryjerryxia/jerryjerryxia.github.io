@@ -497,8 +497,8 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
    ========================================================= */
 .detail { padding: calc(var(--nav-h) + clamp(2.5rem, 7vw, 5rem)) 0 clamp(3rem, 8vw, 6rem); background: var(--ink); }
 .detail__inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
-.detail__media { position: relative; }
-.detail__media img { width: 100%; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-md); }
+.detail__media { position: relative; align-self: center; }
+.detail__media img { display: block; width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-md); }
 .detail__back { display: inline-flex; align-items: center; gap: 0.4em; color: var(--paper-soft); font-size: 0.88rem; margin-bottom: 1.4rem; transition: color 0.2s; }
 .detail__back:hover { color: var(--gold); }
 .detail__title { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 4.6vw, 2.9rem); line-height: 1.06; letter-spacing: -0.015em; margin-bottom: 1.4rem; }
