@@ -354,7 +354,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 /* =========================================================
    FEATURES
    ========================================================= */
-.features { padding: clamp(4.5rem, 12vw, 8rem) 0; background: var(--ink); }
+.features { padding: clamp(4.5rem, 12vw, 8rem) 0; background: linear-gradient(180deg, var(--ink-1), var(--ink)); }
 .feature-grid {
   list-style: none;
   display: flex;
@@ -417,6 +417,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .cta__scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
+    linear-gradient(180deg, var(--ink-1), transparent 14%, transparent 86%, var(--ink-1)),
     linear-gradient(180deg, rgba(10, 19, 30, 0.78), rgba(10, 19, 30, 0.62)),
     radial-gradient(80% 80% at 50% 40%, rgba(10, 19, 30, 0.3), rgba(10, 19, 30, 0.85));
 }
@@ -451,7 +452,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 /* =========================================================
    ABOUT
    ========================================================= */
-.about { padding: clamp(4rem, 11vw, 7rem) 0; background: var(--ink); }
+.about { padding: clamp(4rem, 11vw, 7rem) 0; background: linear-gradient(180deg, var(--ink-1), var(--ink)); }
 .about__inner { max-width: 760px; }
 .about__title { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 4.4vw, 3rem); margin-bottom: 1.1rem; letter-spacing: -0.01em; }
 .about__text { color: var(--paper-soft); font-size: 1.12rem; line-height: 1.7; max-width: 60ch; }
