@@ -72,8 +72,8 @@
     revealEls.forEach(function (el) { revObserver.observe(el); });
   }
 
-  /* ---------- ambient story video (lazy + reduced-motion aware) ---------- */
-  var video = document.getElementById('storyVideo');
+  /* ---------- ambient logline video (lazy + reduced-motion aware) ---------- */
+  var video = document.getElementById('loglineVideo');
   if (video && !prefersReducedMotion && 'IntersectionObserver' in window) {
     var loaded = false;
     var vidObserver = new IntersectionObserver(function (entries) {

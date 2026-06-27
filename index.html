@@ -115,6 +115,11 @@
 
     <!-- ===================== LOGLINE ===================== -->
     <section class="logline" id="logline">
+      <video class="logline__bg" id="loglineVideo" muted loop playsinline preload="none" aria-hidden="true" width="1920" height="1080">
+        <source data-src="assets/games/ess/polyhedron.webm" type="video/webm" />
+      </video>
+      <div class="logline__scrim" aria-hidden="true"></div>
+
       <div class="logline__group reveal">
         <p class="logline__text">An endless summer. A friend who refuses to wake.</p>
         <p class="logline__text">And a loop that only breaks when you do something <em>unforgivable</em>.</p>
@@ -123,9 +128,10 @@
 
     <!-- ===================== STORY / PREMISE ===================== -->
     <section class="story" id="story" aria-labelledby="story-title">
-      <video class="story__bg" id="storyVideo" muted loop playsinline preload="none" poster="assets/games/ess/desert-thumb.jpg" aria-hidden="true" width="1920" height="1080">
-        <source data-src="assets/games/ess/polyhedron.webm" type="video/webm" />
-      </video>
+      <picture>
+        <source type="image/webp" srcset="assets/games/ess/desert.webp" />
+        <img class="story__bg" src="assets/games/ess/desert.jpg" alt="" aria-hidden="true" width="1600" height="900" loading="lazy" />
+      </picture>
       <div class="story__scrim" aria-hidden="true"></div>
 
       <div class="wrap story__content reveal">
