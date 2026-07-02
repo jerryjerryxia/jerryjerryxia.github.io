@@ -198,6 +198,16 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 }
 .nav__cta:hover { transform: translateY(-2px); }
 
+.lang-switch {
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--paper-soft) !important;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  padding: 0.38em 0.85em; line-height: 1;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  text-shadow: none;
+}
+.lang-switch:hover { color: var(--paper) !important; border-color: var(--paper-soft); background: rgba(255, 255, 255, 0.06); }
+
 .nav__toggle {
   display: none; flex-direction: column; gap: 5px;
   width: 44px; height: 44px; align-items: center; justify-content: center;
@@ -261,6 +271,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   line-height: 1.4;
   color: var(--paper);
   max-width: 32ch;
+  margin-top: 1.6rem;
   margin-bottom: 1.7rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
@@ -427,6 +438,9 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .content-note { margin-top: 1.8rem; font-size: 0.82rem; color: var(--paper-mute); letter-spacing: 0.02em; }
 .cta__specs { margin-top: 1.8rem; font-size: 0.9rem; color: var(--paper-soft); letter-spacing: 0.03em; }
 
+/* Taller CTA panel (content vertically centered); background + text unchanged. */
+.cta--tall { display: flex; flex-direction: column; justify-content: center; min-height: 88vh; }
+
 /* =========================================================
    MORE GAMES (minor)
    ========================================================= */
@@ -511,6 +525,84 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .detail__contrib li b { color: var(--paper); font-weight: 600; }
 
 /* =========================================================
+   PRESS KIT
+   ========================================================= */
+.pk { background: var(--ink); }
+.pk-muted { color: var(--paper-mute); }
+.pk-link { color: var(--sky); transition: color 0.2s; }
+.pk-link:hover { color: var(--gold); }
+
+.pk-intro { padding: calc(var(--nav-h) + clamp(2.5rem, 7vw, 5rem)) 0 clamp(1.5rem, 4vw, 2.5rem); }
+.pk-title {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(2.2rem, 5.4vw, 3.4rem); line-height: 1.04; letter-spacing: -0.015em;
+  margin-bottom: 0.5rem; text-wrap: balance;
+}
+.pk-cn {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(1rem, 2.4vw, 1.35rem); letter-spacing: 0.4em;
+  color: var(--paper-soft); margin-bottom: 1.4rem; padding-left: 0.4em;
+}
+.pk-lead { color: var(--paper-soft); font-size: 1.1rem; line-height: 1.7; max-width: 64ch; margin-bottom: 1.9rem; }
+.pk-downloads { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+.pk-section { padding: clamp(2.4rem, 5.5vw, 3.6rem) 0; border-top: 1px solid var(--line); }
+.pk-section__title {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.1; letter-spacing: -0.01em;
+  margin-bottom: 1.6rem;
+}
+.pk-hint, .pk-brand figcaption span.pk-muted { font-size: 0.92rem; }
+.pk-hint { color: var(--paper-soft); margin-bottom: 1.6rem; max-width: 62ch; }
+
+/* fact sheet */
+.pk-facts { display: grid; grid-template-columns: max-content 1fr; gap: 0.85rem 2rem; align-items: baseline; max-width: 720px; }
+.pk-facts dt { color: var(--sky); font-weight: 600; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.pk-facts dd { color: var(--paper); }
+
+/* description */
+.pk-quote {
+  font-family: var(--display); font-style: italic; font-weight: 400;
+  font-size: clamp(1.25rem, 3vw, 1.8rem); line-height: 1.4; color: var(--paper);
+  margin-bottom: 1.8rem; max-width: 34ch; text-wrap: balance;
+  padding-left: 1.1rem; border-left: 2px solid var(--gold-deep);
+}
+.pk-prose p { color: var(--paper-soft); margin-bottom: 1.1rem; max-width: 66ch; }
+.pk-prose strong { color: var(--paper); font-weight: 600; }
+.pk-prose em { color: var(--gold); font-style: italic; }
+
+/* features on a plain dark section want a subtle card border boost */
+.pk-feature-grid .feature { background: linear-gradient(180deg, rgba(20, 40, 62, 0.4), rgba(11, 22, 34, 0.5)); }
+
+/* credits */
+.pk-credits { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.3rem 2rem; max-width: 900px; }
+.pk-credit__role { display: block; color: var(--sky); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+.pk-credits b { color: var(--paper); font-weight: 600; }
+
+/* streaming permission callout */
+.pk-note {
+  background: linear-gradient(180deg, rgba(20, 40, 62, 0.5), rgba(11, 22, 34, 0.55));
+  border: 1px solid var(--line-strong); border-radius: 16px;
+  padding: clamp(1.4rem, 3vw, 2rem); max-width: 760px;
+}
+.pk-note h3 { font-family: var(--display); font-weight: 600; font-size: 1.25rem; margin-bottom: 0.6rem; }
+.pk-note p { color: var(--paper-soft); margin: 0; max-width: 62ch; }
+.pk-note em { color: var(--gold); font-style: italic; }
+
+/* logo & icon */
+.pk-brand-row { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.pk-brand {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px;
+  padding: 1.1rem 1.4rem; min-width: 240px;
+}
+.pk-brand img { width: 72px; height: 72px; border-radius: 12px; flex: none; }
+.pk-brand__chip { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 12px; background: #07101a; border: 1px solid var(--line); flex: none; }
+.pk-brand__chip .brand__mark { width: 26px; height: 26px; }
+.pk-brand figcaption { display: flex; flex-direction: column; gap: 0.25rem; }
+.pk-brand figcaption b { font-weight: 600; }
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 900px) {
@@ -551,6 +643,10 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 
   .detail__inner { grid-template-columns: 1fr; }
   .detail__media { order: -1; }
+
+  .pk-facts { grid-template-columns: 1fr; gap: 0.3rem 0; }
+  .pk-facts dt { margin-top: 1rem; }
+  .pk-facts dt:first-child { margin-top: 0; }
 
   .lightbox { grid-template-columns: 1fr; }
   .lightbox__nav { position: absolute; top: 50%; transform: translateY(-50%); }

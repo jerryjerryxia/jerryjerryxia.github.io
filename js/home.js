@@ -5,6 +5,24 @@
 (function () {
   'use strict';
 
+  /* ---------- language preference (remember choice + redirect returning visitors) ----------
+     Default is always the page as served (English at /, Chinese at /zh/). We only ever
+     redirect a *returning* visitor who previously clicked the switcher to the other language.
+     The switcher link already points at this page's counterpart, so we just follow its href. */
+  var langSwitch = document.querySelector('[data-lang-switch]');
+  if (langSwitch) {
+    var curLang = document.documentElement.lang.indexOf('zh') === 0 ? 'zh' : 'en';
+    var otherLang = curLang === 'zh' ? 'en' : 'zh';
+    try {
+      if (localStorage.getItem('lang') === otherLang) {
+        window.location.replace(langSwitch.href);
+      }
+    } catch (e) {}
+    langSwitch.addEventListener('click', function () {
+      try { localStorage.setItem('lang', otherLang); } catch (e) {}
+    });
+  }
+
   var prefersReducedMotion =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -8,6 +8,9 @@
   <title>Endless Summer Syndrome — A Surreal Psychological Visual Novel | Jerrix Studio</title>
   <meta name="description" content="Endless Summer Syndrome is a surreal psychological visual novel by Jerrix Studio. You ended the world as you knew it — and she gave you an endless summer as your reward. Coming soon to Steam." />
   <link rel="canonical" href="https://www.jerrix.studio/" />
+  <link rel="alternate" hreflang="en" href="https://www.jerrix.studio/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://www.jerrix.studio/zh/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.jerrix.studio/" />
   <meta name="theme-color" content="#0b1622" />
 
   <!-- Open Graph / social -->
@@ -71,7 +74,9 @@
         <a href="#story">Story</a>
         <a href="#features">Features</a>
         <a href="#gallery">Gallery</a>
+        <a href="presskit.html">Press Kit</a>
         <a href="#more" hidden>More Games</a>
+        <a class="lang-switch" href="zh/index.html" data-lang-switch hreflang="zh-Hans" lang="zh-Hans">中文</a>
         <a class="nav__cta" href="https://store.steampowered.com/app/4714410/Endless_Summer_Syndrome/" target="_blank" rel="noopener">Wishlist on Steam</a>
       </nav>
 
@@ -98,7 +103,6 @@
 
       <div class="hero__content reveal">
         <h1 class="hero__title" id="hero-title">Endless Summer<br>Syndrome</h1>
-        <p class="hero__cn" lang="zh">无休夏日综合症</p>
         <p class="hero__tagline">You ended the world as you knew it&nbsp;— and she gave you an endless summer as your reward.</p>
 
         <div class="hero__cta">
@@ -151,16 +155,16 @@
             <span class="feature__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a3 3 0 0 0 3 3h6"/><path d="M6 21v-6"/><circle cx="6" cy="3" r="1.6"/><circle cx="18" cy="12" r="1.6"/><circle cx="6" cy="21" r="1.6"/></svg>
             </span>
-            <h3>Branching loops, many endings</h3>
-            <p>Every run forks down a different path. Reach reconciliation, ruin, or one of the endings you were never meant to find.</p>
+            <h3>Multiple endings</h3>
+            <p>Through illusion and madness, arrive at reconciliation, ruin, or an ending you were never meant to find.</p>
           </li>
 
           <li class="feature">
             <span class="feature__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M9.5 12l1.8 1.8L15 9.5"/></svg>
             </span>
-            <h3>Choices that bite</h3>
-            <p>The decisions you make ripple, accumulate, and curdle. Death is always on the menu — and sometimes it's the honest option.</p>
+            <h3>Not every path is bright and shiny</h3>
+            <p>Every choice can spawn a whole new timeline, with death and ruin never far behind.</p>
           </li>
 
           <li class="feature">
@@ -168,7 +172,7 @@
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg>
             </span>
             <h3>Fully localized</h3>
-            <p>Play in English, <span lang="zh-Hans">简体中文</span>, or <span lang="zh-Hant">繁體中文</span> — interface, narration, and audio, localized end to end.</p>
+            <p>Play in English, Simplified Chinese, or Traditional Chinese — interface, narration, and audio, localized end to end.</p>
           </li>
 
           <li class="feature">
@@ -176,15 +180,15 @@
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
             </span>
             <h3>A dreamlike score</h3>
-            <p>An original soundtrack drifts between lullaby and dread, scoring each loop as the summer slowly comes undone.</p>
+            <p>Hazy, ethereal music drifts as the summer slowly comes undone.</p>
           </li>
 
           <li class="feature">
             <span class="feature__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
             </span>
-            <h3>Hand-painted surrealism</h3>
-            <p>Bespoke art melts a perfect summer into something quietly wrong — bright skies, silver deserts, and dessert that bites back.</p>
+            <h3>Vivid surrealism</h3>
+            <p>Hand-painted art melts a perfect summer into something quietly wrong — bright false skies, a silver desert of bones, and a giant venomous jellyfish that holds the fate of the world.</p>
           </li>
         </ul>
       </div>
@@ -208,8 +212,8 @@
           <button class="shot" data-full="assets/games/ess/desert.jpg" data-caption="The silver desert">
             <picture><source type="image/webp" sizes="(max-width: 760px) 100vw, 560px" srcset="assets/games/ess/desert-thumb.webp 900w, assets/games/ess/desert.webp 1600w" /><img src="assets/games/ess/desert.jpg" srcset="assets/games/ess/desert-thumb.jpg 900w, assets/games/ess/desert.jpg 1600w" sizes="(max-width: 760px) 100vw, 560px" loading="lazy" width="1600" height="900" alt="A glowing teal moon hangs over a silver-white desert scattered with bones." /></picture>
           </button>
-          <button class="shot" data-full="assets/games/ess/cafe.jpg" data-caption="An empty seat">
-            <picture><source type="image/webp" sizes="(max-width: 760px) 100vw, 560px" srcset="assets/games/ess/cafe-thumb.webp 900w, assets/games/ess/cafe.webp 1600w" /><img src="assets/games/ess/cafe.jpg" srcset="assets/games/ess/cafe-thumb.jpg 900w, assets/games/ess/cafe.jpg 1600w" sizes="(max-width: 760px) 100vw, 560px" loading="lazy" width="1600" height="900" alt="A surreal dessert parlor with melting walls and a single dessert on a white table." /></picture>
+          <button class="shot" data-full="assets/games/ess/summergaze_laugh.jpg" data-caption="Laughter by the summer sea">
+            <picture><source type="image/webp" sizes="(max-width: 760px) 100vw, 560px" srcset="assets/games/ess/summergaze_laugh-thumb.webp 900w, assets/games/ess/summergaze_laugh.webp 1600w" /><img src="assets/games/ess/summergaze_laugh.jpg" srcset="assets/games/ess/summergaze_laugh-thumb.jpg 900w, assets/games/ess/summergaze_laugh.jpg 1600w" sizes="(max-width: 760px) 100vw, 560px" loading="lazy" width="1600" height="900" alt="A pale-haired girl in a white dress laughs by a sparkling summer sea under a bright blue sky." /></picture>
           </button>
           <button class="shot" data-full="assets/games/ess/cafe2.jpg" data-caption="Where the summer comes undone">
             <picture><source type="image/webp" sizes="(max-width: 760px) 100vw, 560px" srcset="assets/games/ess/cafe2-thumb.webp 900w, assets/games/ess/cafe2.webp 1600w" /><img src="assets/games/ess/cafe2.jpg" srcset="assets/games/ess/cafe2-thumb.jpg 900w, assets/games/ess/cafe2.jpg 1600w" sizes="(max-width: 760px) 100vw, 560px" loading="lazy" width="1600" height="900" alt="A warped, dreamlike interior dissolving into abstract color." /></picture>
@@ -227,7 +231,6 @@
 
       <div class="wrap cta__content reveal">
         <h2 class="cta__title" id="cta-title">Step into the endless summer.</h2>
-        <p class="cta__sub">Wishlist <strong>Endless Summer Syndrome</strong> on Steam, and be there the moment the loop opens.</p>
 
         <a class="btn btn--primary btn--lg" href="https://store.steampowered.com/app/4714410/Endless_Summer_Syndrome/" target="_blank" rel="noopener">
           <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path fill="currentColor" d="M11.98 2C6.7 2 2.36 6.03 2.05 11.2l5.36 2.21a2.8 2.8 0 0 1 1.58-.49l2.38-3.45v-.05a3.74 3.74 0 1 1 3.74 3.74h-.09l-3.4 2.43c0 .03 0 .06.01.09a2.81 2.81 0 1 1-5.6.18l-3.83-1.58A10 10 0 1 0 11.98 2zM8.5 17.66l-1.23-.5a2.12 2.12 0 0 0 3.93-1.6 2.12 2.12 0 0 0-2.76-1.18l1.27.52a1.56 1.56 0 1 1-1.2 2.88zm8.74-6.92a2.49 2.49 0 1 0-2.49-2.49 2.49 2.49 0 0 0 2.49 2.49zm0-.62a1.87 1.87 0 1 1 1.87-1.87 1.87 1.87 0 0 1-1.87 1.87z"/></svg>
@@ -274,7 +277,7 @@
     <section class="about" id="about" aria-labelledby="about-title">
       <div class="wrap about__inner reveal">
         <h2 class="about__title" id="about-title">Jerrix Studio</h2>
-        <p class="about__text">Jerrix Studio is the independent game studio of <strong>Jerry Xia</strong> — a designer, writer, and developer making narrative games about the strange interiors of the mind. <em>Endless Summer Syndrome</em> is our debut title.</p>
+        <p class="about__text">Jerrix Studio is the independent game studio founded by <strong>Jerrix</strong>. We are focused on narrative games and are fascinated by the deep intricacies of the human mind. <em>Endless Summer Syndrome</em> is our debut title.</p>
       </div>
     </section>
   </main>
@@ -285,6 +288,7 @@
       <div class="footer__brand">JERRIX <span>STUDIO</span></div>
       <nav class="footer__links" aria-label="Contact and social">
         <a href="mailto:jerryjerryxia@gmail.com">Email</a>
+        <a href="presskit.html">Press Kit</a>
         <a href="https://store.steampowered.com/app/4714410/Endless_Summer_Syndrome/" target="_blank" rel="noopener">Steam</a>
         <a href="https://www.linkedin.com/in/jerryjerryxia/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/jerryjerryxia" target="_blank" rel="noopener">GitHub</a>
