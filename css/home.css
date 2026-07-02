@@ -426,7 +426,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .cta__scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(72% 82% at 50% 45%, rgba(10, 19, 30, 0.58), rgba(10, 19, 30, 0.2) 100%),
+    radial-gradient(72% 82% at 50% 45%, rgba(10, 19, 30, 0.40), rgba(10, 19, 30, 0.10) 100%),
     linear-gradient(180deg, var(--ink-1), transparent 10%, transparent 90%, var(--ink-1));
 }
 .cta__content { position: relative; z-index: 2; text-align: center; max-width: 720px; }
