@@ -439,7 +439,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 .cta__specs { margin-top: 1.8rem; font-size: 0.9rem; color: var(--paper-soft); letter-spacing: 0.03em; }
 
 /* Taller CTA panel (content vertically centered); background + text unchanged. */
-.cta--tall { display: flex; flex-direction: column; justify-content: center; min-height: 88vh; }
+.cta--tall { display: flex; flex-direction: column; justify-content: center; min-height: 94vh; }
 
 /* =========================================================
    MORE GAMES (minor)
