@@ -162,7 +162,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   display: flex; align-items: center;
   /* persistent top scrim so nav text stays legible over the bright hero before scroll */
   background: linear-gradient(180deg, rgba(8, 16, 26, 0.62) 0%, rgba(8, 16, 26, 0) 100%);
-  transition: background 0.35s var(--ease), -webkit-backdrop-filter 0.35s, backdrop-filter 0.35s, border-color 0.35s;
+  transition: background 0.35s var(--ease), border-color 0.35s;
   border-bottom: 1px solid transparent;
 }
 .nav.is-scrolled {
