@@ -26,8 +26,8 @@
   --shadow-lg: 0 30px 80px -30px rgba(0, 0, 0, 0.75);
   --shadow-md: 0 16px 40px -18px rgba(0, 0, 0, 0.65);
 
-  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --display: 'Fraunces', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --body: 'Inter', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   --maxw: 1180px;
   --nav-h: 68px;
