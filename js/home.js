@@ -215,13 +215,19 @@
     // highlight to the destination so it doesn't strobe through them on the way.
     function spyUnlock() { if (spyLock) { spyLock = false; setSpyActive(); } }
     spyLinks.forEach(function (a) {
-      a.addEventListener('click', function () {
+      a.addEventListener('click', function (e) {
         var id = a.getAttribute('href').slice(1);
-        if (!document.getElementById(id)) return;
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
         spyLock = true;
         markActive(id);
+        var navH = (nav ? nav.offsetHeight : 68) + 12;
+        var y = target.getBoundingClientRect().top + window.pageYOffset - navH;
+        window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
         clearTimeout(spyLockTimer);
-        spyLockTimer = setTimeout(spyUnlock, 900); // fallback if scrollend is unsupported
+        spyLockTimer = setTimeout(spyUnlock, 1000); // fallback if scrollend is unsupported
       });
     });
     window.addEventListener('scrollend', spyUnlock);
