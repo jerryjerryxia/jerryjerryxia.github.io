@@ -191,20 +191,40 @@
       if (sec) spySections.push(sec);
     });
     var spyVisible = {};
+    var spyLock = false, spyLockTimer;
+    function markActive(id) {
+      spyLinks.forEach(function (a) {
+        a.classList.toggle('is-current', !!id && a.getAttribute('href').slice(1) === id);
+      });
+    }
     function setSpyActive() {
+      if (spyLock) return; // during a click-jump, keep the destination highlighted
       var activeId = null;
       for (var i = 0; i < spySections.length; i++) {
         if (spyVisible[spySections[i].id]) { activeId = spySections[i].id; break; }
       }
-      spyLinks.forEach(function (a) {
-        a.classList.toggle('is-current', !!activeId && a.getAttribute('href').slice(1) === activeId);
-      });
+      markActive(activeId);
     }
     var spyObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { spyVisible[e.target.id] = e.isIntersecting; });
       setSpyActive();
     }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
     spySections.forEach(function (s) { spyObserver.observe(s); });
+
+    // Clicking a nav anchor smooth-scrolls past intermediate sections; lock the
+    // highlight to the destination so it doesn't strobe through them on the way.
+    function spyUnlock() { if (spyLock) { spyLock = false; setSpyActive(); } }
+    spyLinks.forEach(function (a) {
+      a.addEventListener('click', function () {
+        var id = a.getAttribute('href').slice(1);
+        if (!document.getElementById(id)) return;
+        spyLock = true;
+        markActive(id);
+        clearTimeout(spyLockTimer);
+        spyLockTimer = setTimeout(spyUnlock, 900); // fallback if scrollend is unsupported
+      });
+    });
+    window.addEventListener('scrollend', spyUnlock);
   }
 
   /* ---------- footer year safety (static 2026, but keep current if later) ---------- */
