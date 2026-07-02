@@ -179,5 +179,33 @@
     });
   }
 
+  /* ---------- scroll-spy: highlight the in-view section's nav link ----------
+     Only same-page anchor links (#story, ...) participate. On other pages the
+     nav points to index.html#..., which don't match [href^="#"], so this is a
+     no-op there. The topmost section inside the centre band wins. */
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a[href^="#"]'));
+  if (spyLinks.length && 'IntersectionObserver' in window) {
+    var spySections = [];
+    spyLinks.forEach(function (a) {
+      var sec = document.getElementById(a.getAttribute('href').slice(1));
+      if (sec) spySections.push(sec);
+    });
+    var spyVisible = {};
+    function setSpyActive() {
+      var activeId = null;
+      for (var i = 0; i < spySections.length; i++) {
+        if (spyVisible[spySections[i].id]) { activeId = spySections[i].id; break; }
+      }
+      spyLinks.forEach(function (a) {
+        a.classList.toggle('is-current', !!activeId && a.getAttribute('href').slice(1) === activeId);
+      });
+    }
+    var spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { spyVisible[e.target.id] = e.isIntersecting; });
+      setSpyActive();
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+    spySections.forEach(function (s) { spyObserver.observe(s); });
+  }
+
   /* ---------- footer year safety (static 2026, but keep current if later) ---------- */
 })();
