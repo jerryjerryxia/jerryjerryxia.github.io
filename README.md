@@ -1,6 +1,6 @@
-# Jerrix Studio — jerrix.studio
+# Ampelos Studio — jerrix.studio
 
-The official site for **Jerrix Studio**, the independent game studio of Jerry Xia.
+The official site for **Ampelos Studio**, the independent game studio of Jerrix.
 
 The homepage is dedicated to the studio's debut title, **Endless Summer Syndrome** (无休夏日综合症) — a surreal psychological visual novel, coming soon to Steam.
 
