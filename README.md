@@ -1,4 +1,4 @@
-# Ampelos Studio — jerrix.studio
+# Ampelos Studio — ampelos.studio
 
 The official site for **Ampelos Studio**, the independent game studio of Jerrix.
 
@@ -25,5 +25,5 @@ The homepage is dedicated to the studio's debut title, **Endless Summer Syndrome
 
 ## Notes
 
-- Static site hosted on GitHub Pages at the custom domain `www.jerrix.studio`.
+- Static site hosted on GitHub Pages at the custom domain `www.ampelos.studio`.
 - Hero, gallery, and social images are web-optimized exports of the game's key art.
