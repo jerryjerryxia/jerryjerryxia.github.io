@@ -58,6 +58,42 @@
     });
   }
 
+  /* ---------- nav dropdown group(s) ---------- */
+  var navGroups = Array.prototype.slice.call(document.querySelectorAll('[data-nav-group]'));
+  function closeGroups(except) {
+    navGroups.forEach(function (g) {
+      if (g === except) return;
+      g.classList.remove('is-open');
+      var b = g.querySelector('.nav__grouptoggle');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+  navGroups.forEach(function (group) {
+    var btn = group.querySelector('.nav__grouptoggle');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !group.classList.contains('is-open');
+      closeGroups(group);
+      group.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    group.querySelectorAll('.nav__submenu a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        group.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  });
+  if (navGroups.length) {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-nav-group]')) closeGroups(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeGroups(null);
+    });
+  }
+
   /* ---------- reveal on scroll (bidirectional + persistent) ----------
      Pure IntersectionObserver — no scroll listeners — and it only ever
      animates opacity/transform, which composite on the GPU. So re-firing
