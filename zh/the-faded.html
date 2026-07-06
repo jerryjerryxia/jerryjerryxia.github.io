@@ -42,7 +42,17 @@
         <span class="brand__name">蔓<span class="brand__studio">工作室</span></span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="主导航">
-        <a href="index.html#story">无休夏日综合症</a>
+        <div class="nav__group" data-nav-group>
+          <button type="button" class="nav__grouptoggle" aria-expanded="false" aria-controls="essSubmenu">
+            无休夏日综合症
+            <svg class="nav__caret" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav__submenu" id="essSubmenu">
+            <a href="index.html#story">剧情</a>
+            <a href="index.html#features">特色</a>
+            <a href="index.html#gallery">画廊</a>
+          </div>
+        </div>
         <a href="index.html#more" hidden>更多作品</a>
         <a href="presskit.html">媒体资料</a>
         <a href="index.html#contact">联系</a>

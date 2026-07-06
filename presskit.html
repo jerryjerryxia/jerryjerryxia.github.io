@@ -55,9 +55,17 @@
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Primary">
-        <a href="index.html#story">Story</a>
-        <a href="index.html#features">Features</a>
-        <a href="index.html#gallery">Gallery</a>
+        <div class="nav__group" data-nav-group>
+          <button type="button" class="nav__grouptoggle" aria-expanded="false" aria-controls="essSubmenu">
+            Endless Summer Syndrome
+            <svg class="nav__caret" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav__submenu" id="essSubmenu">
+            <a href="index.html#story">Story</a>
+            <a href="index.html#features">Features</a>
+            <a href="index.html#gallery">Gallery</a>
+          </div>
+        </div>
         <a href="presskit.html" aria-current="page">Press Kit</a>
         <a class="lang-switch" href="zh/presskit.html" data-lang-switch hreflang="zh-Hans" lang="zh-Hans">中文</a>
         <a class="nav__cta" href="https://store.steampowered.com/app/4714410/Endless_Summer_Syndrome/" target="_blank" rel="noopener">Wishlist on Steam</a>
