@@ -772,16 +772,16 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 /* volume slider — slides out to the left on hover / keyboard focus */
 .music__vol {
   display: flex; align-items: center;
-  width: 0; height: 34px; padding: 0; opacity: 0; overflow: hidden;
+  max-width: 0; height: 34px; padding: 0; opacity: 0; overflow: hidden;
   background: rgba(8, 16, 26, 0.7);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border: 1px solid var(--line-strong); border-radius: 999px;
-  transition: width 0.25s var(--ease), padding 0.25s var(--ease), opacity 0.2s;
+  transition: max-width 0.28s var(--ease), padding 0.28s var(--ease), opacity 0.2s;
 }
 .music:hover .music__vol,
-.music:focus-within .music__vol { width: 104px; padding: 0 14px; opacity: 1; }
+.music:focus-within .music__vol { max-width: 140px; padding: 0 14px; opacity: 1; }
 .music__vol input[type="range"] {
-  -webkit-appearance: none; appearance: none;
+  -webkit-appearance: none; appearance: none; flex: none;
   width: 90px; height: 4px; margin: 0; border-radius: 2px;
   background: rgba(255, 255, 255, 0.22); cursor: pointer; outline: none;
 }
