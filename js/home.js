@@ -283,7 +283,22 @@
     if (!AC) return;
 
     var SRC = '/assets/audio/endless_summer_time.mp3';
-    var LOOP_START = 115.0, LOOP_END = 230.0, VOLUME = 0.28, FADE = 1.2;
+    var LOOP_START = 115.0, LOOP_END = 230.0, FADE = 1.2;
+
+    var vol = 0.25;
+    try { var sv = parseFloat(localStorage.getItem('ess-music-vol')); if (sv >= 0 && sv <= 1) vol = sv; } catch (e) {}
+
+    var wrap = document.createElement('div');
+    wrap.className = 'music';
+
+    var volWrap = document.createElement('div');
+    volWrap.className = 'music__vol';
+    var slider = document.createElement('input');
+    slider.type = 'range';
+    slider.min = '0'; slider.max = '1'; slider.step = '0.01';
+    slider.value = String(vol);
+    slider.setAttribute('aria-label', 'Music volume');
+    volWrap.appendChild(slider);
 
     var btn = document.createElement('button');
     btn.className = 'music-toggle';
@@ -292,7 +307,10 @@
     btn.setAttribute('aria-label', 'Toggle background music');
     btn.title = 'Music';
     btn.innerHTML = '<span class="music-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
-    document.body.appendChild(btn);
+
+    wrap.appendChild(volWrap);
+    wrap.appendChild(btn);
+    document.body.appendChild(wrap);
 
     var ctx, gain, source, buffer, bytes, playing = false, startOffset = 0, ctxStart = 0;
 
@@ -350,7 +368,7 @@
             ctxStart = ctx.currentTime;
             source.start(0, startOffset);
             setState(true);
-            fadeTo(VOLUME);
+            fadeTo(vol);
           }
           if (onOk) onOk();
         })['catch'](function () {});
@@ -373,6 +391,17 @@
     btn.addEventListener('click', function () {
       if (playing) { pause(); store('off'); }
       else { play(); store('on'); }
+    });
+
+    slider.addEventListener('input', function () {
+      vol = parseFloat(slider.value);
+      try { localStorage.setItem('ess-music-vol', String(vol)); } catch (e) {}
+      if (playing && gain && ctx) {
+        var t = ctx.currentTime;
+        gain.gain.cancelScheduledValues(t);
+        gain.gain.setValueAtTime(gain.gain.value, t);
+        gain.gain.linearRampToValueAtTime(vol, t + 0.08);
+      }
     });
 
     // Carry playback position across page navigations (multi-page site) so the

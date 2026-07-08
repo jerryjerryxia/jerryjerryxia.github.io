@@ -748,11 +748,15 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 /* =========================================================
    AMBIENT MUSIC TOGGLE (bottom-right)
    ========================================================= */
-.music-toggle {
+.music {
   position: fixed;
   right: clamp(14px, 3vw, 26px);
   bottom: clamp(14px, 3vw, 26px);
   z-index: 90;
+  display: flex; align-items: center; gap: 8px;
+}
+.music-toggle {
+  flex: none;
   width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
@@ -764,6 +768,33 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s, transform 0.2s var(--ease), background 0.2s;
 }
+
+/* volume slider — slides out to the left on hover / keyboard focus */
+.music__vol {
+  display: flex; align-items: center;
+  width: 0; height: 34px; padding: 0; opacity: 0; overflow: hidden;
+  background: rgba(8, 16, 26, 0.7);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  transition: width 0.25s var(--ease), padding 0.25s var(--ease), opacity 0.2s;
+}
+.music:hover .music__vol,
+.music:focus-within .music__vol { width: 104px; padding: 0 14px; opacity: 1; }
+.music__vol input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 90px; height: 4px; margin: 0; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22); cursor: pointer; outline: none;
+}
+.music__vol input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--gold); cursor: pointer; box-shadow: 0 0 8px rgba(255, 186, 77, 0.5);
+}
+.music__vol input[type="range"]::-moz-range-thumb {
+  width: 13px; height: 13px; border: 0; border-radius: 50%;
+  background: var(--gold); cursor: pointer;
+}
+.music__vol input[type="range"]:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 .music-toggle:hover { color: var(--gold); border-color: var(--gold-deep); transform: translateY(-2px); }
 .music-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .music-toggle.is-playing { color: var(--gold); border-color: var(--gold-deep); }
