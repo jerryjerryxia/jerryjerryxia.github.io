@@ -779,7 +779,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
   transition: max-width 0.28s var(--ease), padding 0.28s var(--ease), opacity 0.2s;
 }
 .music:hover .music__vol,
-.music:focus-within .music__vol { max-width: 140px; padding: 0 14px; opacity: 1; }
+.music:has(:focus-visible) .music__vol { max-width: 140px; padding: 0 14px; opacity: 1; }
 .music__vol input[type="range"] {
   -webkit-appearance: none; appearance: none; flex: none;
   width: 90px; height: 4px; margin: 0; border-radius: 2px;

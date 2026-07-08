@@ -312,7 +312,7 @@
     wrap.appendChild(btn);
     document.body.appendChild(wrap);
 
-    var ctx, gain, source, buffer, bytes, playing = false, startOffset = 0, ctxStart = 0;
+    var ctx, gain, source, buffer, bytes, playing = false;
 
     function stored() { try { return localStorage.getItem('ess-music'); } catch (e) { return null; } }
     function store(v) { try { localStorage.setItem('ess-music', v); } catch (e) {} }
@@ -338,16 +338,7 @@
       btn.classList.toggle('is-playing', on);
       btn.setAttribute('aria-pressed', String(on));
     }
-    // Where we are in the buffer right now, accounting for the intro + [115,230] loop.
-    function currentPos() {
-      if (!playing || !ctx) return 0;
-      var t = ctx.currentTime - ctxStart;
-      var firstLeg = LOOP_END - startOffset; // time from where we started to loopEnd
-      if (t < firstLeg) return startOffset + t;
-      var loopLen = LOOP_END - LOOP_START;
-      return LOOP_START + ((t - firstLeg) % loopLen);
-    }
-    function play(onOk, offset) {
+    function play(onOk) {
       if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
       // Await resume() before starting the source + fade, else the gain ramp is
       // scheduled against a frozen clock and the track plays silently. And only
@@ -364,9 +355,7 @@
             source.loopStart = LOOP_START;
             source.loopEnd = LOOP_END;
             source.connect(gain);
-            startOffset = offset || 0;
-            ctxStart = ctx.currentTime;
-            source.start(0, startOffset);
+            source.start(0);
             setState(true);
             fadeTo(vol);
           }
@@ -404,28 +393,15 @@
       }
     });
 
-    // Carry playback position across page navigations (multi-page site) so the
-    // ~2min intro isn't replayed on every click-through. sessionStorage scopes
-    // it to this tab's browsing session.
-    function savePos() {
-      try {
-        if (playing) sessionStorage.setItem('ess-music-pos', String(currentPos()));
-        else sessionStorage.removeItem('ess-music-pos');
-      } catch (e) {}
-    }
-    window.addEventListener('pagehide', savePos);
-
     if (stored() !== 'off') {
-      var resumePos = 0;
-      try { resumePos = parseFloat(sessionStorage.getItem('ess-music-pos')) || 0; } catch (e) {}
       (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(function () { getBytes(); });
-      play(removeKick, resumePos); // attempt autoplay, resuming where the last page left off
+      play(removeKick); // attempt autoplay on landing (browser permitting); always from the start
       var evs = ['pointerdown', 'keydown', 'touchstart'];
       function removeKick() { evs.forEach(function (ev) { window.removeEventListener(ev, kick, true); }); }
       var kick = function (e) {
         // if the first gesture was the toggle itself, let its click handler decide
         if (e && e.target && e.target.closest && e.target.closest('.music-toggle')) { removeKick(); return; }
-        play(removeKick, resumePos);
+        play(removeKick);
       };
       evs.forEach(function (ev) { window.addEventListener(ev, kick, true); });
     }
