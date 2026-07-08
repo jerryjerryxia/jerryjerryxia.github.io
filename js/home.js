@@ -269,5 +269,93 @@
     window.addEventListener('scrollend', spyUnlock);
   }
 
-  /* ---------- footer year safety (static 2026, but keep current if later) ---------- */
+  /* ---------- ambient background music (Endless Summer Time) ----------
+     Web Audio so we can honour the game's loop points: the intro plays once
+     (0 → 230s), then the [115s, 230s] tail loops seamlessly. Auto-starts on the
+     first user gesture unless the visitor previously turned it off. */
+  (function initMusic() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+
+    var SRC = '/assets/audio/endless_summer_time.mp3';
+    var LOOP_START = 115.0, LOOP_END = 230.0, VOLUME = 0.32, FADE = 1.2;
+
+    var btn = document.createElement('button');
+    btn.className = 'music-toggle';
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Toggle background music');
+    btn.title = 'Music';
+    btn.innerHTML = '<span class="music-toggle__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+    document.body.appendChild(btn);
+
+    var ctx, gain, source, buffer, bytes, playing = false;
+
+    function stored() { try { return localStorage.getItem('ess-music'); } catch (e) { return null; } }
+    function store(v) { try { localStorage.setItem('ess-music', v); } catch (e) {} }
+
+    function getBytes() {
+      if (!bytes) bytes = fetch(SRC).then(function (r) { return r.arrayBuffer(); });
+      return bytes;
+    }
+    function getBuffer() {
+      if (buffer) return Promise.resolve(buffer);
+      // slice() so the cached bytes survive decodeAudioData detaching the buffer
+      return getBytes().then(function (b) { return ctx.decodeAudioData(b.slice(0)); })
+        .then(function (d) { buffer = d; return d; });
+    }
+    function fadeTo(v) {
+      var t = ctx.currentTime;
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(gain.gain.value, t);
+      gain.gain.linearRampToValueAtTime(v, t + FADE);
+    }
+    function setState(on) {
+      playing = on;
+      btn.classList.toggle('is-playing', on);
+      btn.setAttribute('aria-pressed', String(on));
+    }
+    function play() {
+      if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
+      if (ctx.state === 'suspended') ctx.resume();
+      getBuffer().then(function () {
+        if (playing) return;
+        source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        source.loopStart = LOOP_START;
+        source.loopEnd = LOOP_END;
+        source.connect(gain);
+        source.start(0);
+        setState(true);
+        fadeTo(VOLUME);
+      })['catch'](function () {});
+    }
+    function pause() {
+      if (!playing || !source) return;
+      var s = source;
+      fadeTo(0);
+      setTimeout(function () { try { s.stop(); } catch (e) {} }, FADE * 1000 + 60);
+      source = null;
+      setState(false);
+    }
+
+    btn.addEventListener('click', function () {
+      if (playing) { pause(); store('off'); }
+      else { play(); store('on'); }
+    });
+
+    if (stored() !== 'off') {
+      (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(function () { getBytes(); });
+      var evs = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+      var removeKick = function () { evs.forEach(function (ev) { window.removeEventListener(ev, kick, true); }); };
+      var kick = function (e) {
+        removeKick();
+        // if the first gesture was the toggle itself, let its click handler decide
+        if (e && e.target && e.target.closest && e.target.closest('.music-toggle')) return;
+        play();
+      };
+      evs.forEach(function (ev) { window.addEventListener(ev, kick, true); });
+    }
+  })();
 })();
