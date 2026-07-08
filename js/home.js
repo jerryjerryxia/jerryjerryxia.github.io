@@ -285,7 +285,7 @@
     var SRC = '/assets/audio/endless_summer_time.mp3';
     var LOOP_START = 115.0, LOOP_END = 230.0, FADE = 1.2;
 
-    var vol = 0.25;
+    var vol = 0.15;
     try { var sv = parseFloat(localStorage.getItem('ess-music-vol')); if (sv >= 0 && sv <= 1) vol = sv; } catch (e) {}
 
     var wrap = document.createElement('div');
