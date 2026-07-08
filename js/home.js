@@ -274,6 +274,11 @@
      (0 → 230s), then the [115s, 230s] tail loops seamlessly. Auto-starts on the
      first user gesture unless the visitor previously turned it off. */
   (function initMusic() {
+    // Homepage only — no player on presskit / project subpages (avoids the
+    // choppy restart when navigating between full page loads).
+    var seg = location.pathname.split('/').pop();
+    if (seg !== '' && seg !== 'index.html') return;
+
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
 
