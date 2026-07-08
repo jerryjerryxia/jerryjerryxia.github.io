@@ -278,7 +278,7 @@
     if (!AC) return;
 
     var SRC = '/assets/audio/endless_summer_time.mp3';
-    var LOOP_START = 115.0, LOOP_END = 230.0, VOLUME = 0.32, FADE = 1.2;
+    var LOOP_START = 115.0, LOOP_END = 230.0, VOLUME = 0.28, FADE = 1.2;
 
     var btn = document.createElement('button');
     btn.className = 'music-toggle';
@@ -317,19 +317,28 @@
     }
     function play() {
       if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
-      if (ctx.state === 'suspended') ctx.resume();
-      getBuffer().then(function () {
-        if (playing) return;
-        source = ctx.createBufferSource();
-        source.buffer = buffer;
-        source.loop = true;
-        source.loopStart = LOOP_START;
-        source.loopEnd = LOOP_END;
-        source.connect(gain);
-        source.start(0);
-        setState(true);
-        fadeTo(VOLUME);
-      })['catch'](function () {});
+      // Resume MUST complete before we start the source + schedule the fade,
+      // otherwise the gain ramp is scheduled against a frozen clock and the
+      // track plays silently (raising gain only takes effect once running).
+      var begin = function () {
+        getBuffer().then(function () {
+          if (playing) return;
+          source = ctx.createBufferSource();
+          source.buffer = buffer;
+          source.loop = true;
+          source.loopStart = LOOP_START;
+          source.loopEnd = LOOP_END;
+          source.connect(gain);
+          source.start(0);
+          setState(true);
+          fadeTo(VOLUME);
+        })['catch'](function () {});
+      };
+      if (ctx.state === 'suspended' && ctx.resume) {
+        ctx.resume().then(begin, begin);
+      } else {
+        begin();
+      }
     }
     function pause() {
       if (!playing || !source) return;
@@ -347,7 +356,7 @@
 
     if (stored() !== 'off') {
       (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(function () { getBytes(); });
-      var evs = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+      var evs = ['pointerdown', 'keydown', 'touchstart'];
       var removeKick = function () { evs.forEach(function (ev) { window.removeEventListener(ev, kick, true); }); };
       var kick = function (e) {
         removeKick();
