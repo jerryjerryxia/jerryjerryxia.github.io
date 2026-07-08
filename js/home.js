@@ -315,23 +315,28 @@
       btn.classList.toggle('is-playing', on);
       btn.setAttribute('aria-pressed', String(on));
     }
-    function play() {
+    function play(onOk) {
       if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
-      // Resume MUST complete before we start the source + schedule the fade,
-      // otherwise the gain ramp is scheduled against a frozen clock and the
-      // track plays silently (raising gain only takes effect once running).
+      // Await resume() before starting the source + fade, else the gain ramp is
+      // scheduled against a frozen clock and the track plays silently. And only
+      // commit once the context is truly running: autoplay-on-landing is often
+      // blocked (resume resolves but stays suspended), so we bail and let the
+      // first-gesture fallback retry — never a silent "playing" state.
       var begin = function () {
+        if (ctx.state !== 'running') return;
         getBuffer().then(function () {
-          if (playing) return;
-          source = ctx.createBufferSource();
-          source.buffer = buffer;
-          source.loop = true;
-          source.loopStart = LOOP_START;
-          source.loopEnd = LOOP_END;
-          source.connect(gain);
-          source.start(0);
-          setState(true);
-          fadeTo(VOLUME);
+          if (!playing) {
+            source = ctx.createBufferSource();
+            source.buffer = buffer;
+            source.loop = true;
+            source.loopStart = LOOP_START;
+            source.loopEnd = LOOP_END;
+            source.connect(gain);
+            source.start(0);
+            setState(true);
+            fadeTo(VOLUME);
+          }
+          if (onOk) onOk();
         })['catch'](function () {});
       };
       if (ctx.state === 'suspended' && ctx.resume) {
@@ -355,14 +360,14 @@
     });
 
     if (stored() !== 'off') {
-      (window.requestIdleCallback || function (f) { setTimeout(f, 1500); })(function () { getBytes(); });
+      (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(function () { getBytes(); });
+      play(removeKick); // attempt autoplay on landing (only works where the browser allows it)
       var evs = ['pointerdown', 'keydown', 'touchstart'];
-      var removeKick = function () { evs.forEach(function (ev) { window.removeEventListener(ev, kick, true); }); };
+      function removeKick() { evs.forEach(function (ev) { window.removeEventListener(ev, kick, true); }); }
       var kick = function (e) {
-        removeKick();
         // if the first gesture was the toggle itself, let its click handler decide
-        if (e && e.target && e.target.closest && e.target.closest('.music-toggle')) return;
-        play();
+        if (e && e.target && e.target.closest && e.target.closest('.music-toggle')) { removeKick(); return; }
+        play(removeKick);
       };
       evs.forEach(function (ev) { window.addEventListener(ev, kick, true); });
     }
